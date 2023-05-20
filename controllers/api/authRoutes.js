@@ -1,5 +1,5 @@
 const router = require('express').Router();
-// const { User } = require('../../models');
+const { User } = require('../../models');
 
 /*
     Route for submitting user info
@@ -35,10 +35,10 @@ router.post('/signup', async (req, res) => {
 */
 router.post('/login', async (req, res) => {
     try {
-        const user = await User.findOne({ where: { email: req.body.username } });
+        const user = await User.findOne({ where: { username: req.body.username } });
 
         if (!user) {
-            res.status(401).json({ message: 'No user found with this email address.' });
+            res.status(401).json({ message: 'No user found with this username address.' });
             return;
         }
 
@@ -49,11 +49,10 @@ router.post('/login', async (req, res) => {
             return;
         }
 
-        // If email and password are correct, sets up user data in the session
+        // If username and password are correct, sets up user data in the session
         req.session.user = {
             id: user.id,
-            email: user.email,
-            firstName: user.first_name,
+            username: user.username,
         };
 
         // Create a "logged_in" session variable, sets it to true. (required for logout function)
