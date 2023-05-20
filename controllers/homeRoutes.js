@@ -4,7 +4,7 @@ router.get('/', (req, res) => {
     res.render('home', { logged_in: req.session.logged_in, });
 });
 
-router.get('/signup', (res, req) => {
+router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
