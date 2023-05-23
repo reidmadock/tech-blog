@@ -15,7 +15,7 @@ UserPost.init(
             type: DataTypes.TEXT,
             allowNull: false,
         },
-        body: {
+        content: {
             type: DataTypes.TEXT,
             allowNull: false,
         },
