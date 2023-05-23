@@ -17,10 +17,10 @@ UserPost.hasMany(Comment, {
 
 // User.belongsToMany(comment)
 
-// Comment.hasOne(User, {
-//     foreignKey: "user_id"
-// })
+Comment.belongsTo(User, {
+    foreignKey: "user_id"
+})
 
-Comment.belongsToMany(User, { through: UserPost });
+// Comment.belongsToMany(User, { through: UserPost });
 
 module.exports = { User, UserPost, Comment};
