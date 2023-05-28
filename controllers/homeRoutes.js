@@ -42,10 +42,13 @@ router.get('/dashboard', async (req, res) => {
         res.redirect('/signup');
     } else {
         try {
-            const dbPostData = await UserPost.findByPk(req.session.user.id);
+            const dbPostData = await UserPost.findAll({
+                where: {
+                    user_id: req.session.user.id,
+                }
+            });
 
-            const allPosts = dbPostData.get({plain: true});
-
+            const allPosts = dbPostData.map((post) => post.get({plain: true}));
             res.render('dashboard', { allPosts, logged_in: req.session.logged_in, });
         } catch (err) {
             console.log(err);

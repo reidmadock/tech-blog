@@ -2,28 +2,33 @@ const { UserPost, User, Comment } = require('../models');
 
 const router = require('express').Router();
 
-/* Create a dashboard route,
-    Where are user can see all their posts,
-    Or create a new post
-*/
 router.get('/dashboard', async (req, res) => {
     try {
-        const dbPostData = await UserPost.findByPk(req.session.user.id);
-
-        const allPosts = dbPostData.map((post) => 
-         post.get({ plain: true })
-        );
-
-
-    // res.render('home', { allPosts, logged_in: req.session.logged_in, })
-    res.status(200).json(allPosts);
-
+        console.log(req);
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
     }
 })
 
+router.get('/dashboard/edit/:id', async (req, res) => {
+    try {
+        const dbPostData = await UserPost.findByPk(req.params.id);
+        
+        if(dbPostData.user_id !== req.session.user.id) {
+            res.status(400).json('Access denied');
+        }
+
+        const post = dbPostData.get({ plain: true });
+        if(dbPostData.user_id === req.session.user.id) {
+            res.render('edit', { post, logged_in: req.session.logged_in});
+        }
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+})
 /* This query is tested and works,
  brings back the selected post, all
  post comments and all comment users */
