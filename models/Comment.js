@@ -33,6 +33,7 @@ Comment.init(
     {
         sequelize,
         timestamps: true, // Should I be using timestamps true? Or just add a data field...
+        updatedAt: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'comment'

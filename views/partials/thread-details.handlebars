@@ -1,0 +1,16 @@
+<section class="card">
+  <!-- The contents of this card links to the board page using the UserPost ID -->
+  <div class="original-post">
+    <!-- The card contains the post name and submission date as the card header -->
+    <header>{{title}} {{createdAt}}</header>
+    <p>{{content}}</p>
+  </div>
+
+  <div class="comment-thread">
+    {{#each comments as |comment|}}
+    <div class="comment">
+        {{comment.user.username}}{{comment.content}}{{comment.createdAt}}
+    </div>
+    {{/each}}
+  </div>
+</section>

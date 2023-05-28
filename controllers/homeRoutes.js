@@ -33,11 +33,24 @@ router.get('/home', (req, res) => {
     res.redirect('/'); // Will this cause a problem with session?
 });
 
-router.get('/dashboard', (req, res) => {
-    if(!req.session.logged_in) {
+/* Create a dashboard route,
+    Where are user can see all their posts,
+    Or create a new post
+*/
+router.get('/dashboard', async (req, res) => {
+    if(!req.session.logged_in) { // Redirect to signup if not logged in
         res.redirect('/signup');
     } else {
-        res.render('dashboard', { logged_in: req.session.logged_in, });
+        try {
+            const dbPostData = await UserPost.findByPk(req.session.user.id);
+
+            const allPosts = dbPostData.get({plain: true});
+
+            res.render('dashboard', { allPosts, logged_in: req.session.logged_in, });
+        } catch (err) {
+            console.log(err);
+            res.status(500).json(err);
+        }
     }
 });
 

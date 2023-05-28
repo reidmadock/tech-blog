@@ -30,6 +30,7 @@ UserPost.init(
     {
         sequelize,
         timestamps: true, // Should I be using timestamps true? Or just add a data field...
+        updatedAt: false, // Not sure if I do or don't need this or if causing probem with comment table
         freezeTableName: true,
         underscored: true,
         modelName: 'user_post'
