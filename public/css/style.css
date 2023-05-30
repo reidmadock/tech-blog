@@ -1,17 +1,58 @@
-body {
-    background-color: grey;
+:root {
+    --content-area-size: 650px;
+
+    --primary-red: hsl(0,100%,67%);
+    --primary-orange: hsl(39, 100%, 56%);
+    --primary-green: hsl(166, 100%, 37%);
+    --primary-cobalt: hsl(234, 85%, 45%);
+
+    --gradient-slate: hsl(252, 100%, 67%);
+    --gradient-royal: hsl(241, 81%, 54%);
+    --gradient-violet: hsla(256, 72%, 46%, 1);
+    --gradient-persian: hsla(241, 72%, 46%, 0);
+
+    --neutral-white: hsl(0, 0%, 100%);
+    --neutral-paleblue: hsl(221, 100%, 96%);
+    --neutral-lavender: hsl(241, 100%, 89%);
+    --neutral-darkgrayblue: hsl(224, 30%, 27%);
 }
 
 * {
     resize: none;
 }
 
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    background-color: var(--neutral-darkgrayblue);
+    /* background-color: #71797E; */
+    /* font-family: 'Courier New', Courier, monospace; */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: var(--neutral-lavender);
+}
+
+a {
+    text-decoration: none;
+    color: var(--neutral-lavender);
+}
+
+header {
+    background-color: grey;
+    padding-bottom: 1rem;
+}
+
+nav a {
+    font-size: 3rem;
+    padding: 1rem;
+}
+
 .card {
     margin: 10px;
-    padding: 10px;
+    /* padding: 10px; */
     border: 2px solid #000000;
     border-radius: 4px;
-    max-width: 600px;
+    max-width: var(--content-area-size);
 }
 
 .card a {
@@ -32,8 +73,19 @@ body {
     padding: 10px;
 }
 
+.comment {
+    max-width: var(--content-area-size);
+    border-bottom: 1px dashed #000000;
+    margin: 4px;
+}
+
+.add-comment {
+    margin-left: 10px;
+    padding: 10px;
+}
+
 .content-header {
-    background-color: azure;
+    background-color: #71797E;
 }
 
 .content-header * {

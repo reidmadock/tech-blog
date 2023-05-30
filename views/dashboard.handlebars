@@ -5,7 +5,7 @@
         <!-- The contents of this card links to the board page using the UserPost ID -->
         <a href="dashboard/edit/{{id}}">
             <!-- The card contains the post name and submission date as the card header -->
-            <header>
+            <header class="content-header">
                 <h2>
                     {{title}}   
                 </h2>
@@ -16,7 +16,7 @@
     </section>
     <div class="post-options">
         {{!-- <button class="edit-post" value="{{blogpost.id}}" form>Edit</button> --}}
-        <button class="delete-post" value="{{blogpost.id}}">Delete</button>
+        <button class="btn delete-post" value="{{blogpost.id}}">Delete</button>
     </div>
     {{/each}}
     <h2>Add post:</h2>

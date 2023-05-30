@@ -37,6 +37,10 @@ allDelBtns.forEach((btn) => {
     btn.addEventListener('click', async (event) => {
         event.preventDefault();
 
+        if(!confirm('Are you sure you would like to delete this post?')) {
+            return;
+        }
+
         const response = await fetch(`/api/data/delete/${btn.value}`, {
             method: "DELETE" });
         if(response.ok) {

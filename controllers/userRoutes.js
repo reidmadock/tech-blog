@@ -37,7 +37,7 @@ router.get('/dashboard/edit/:id', async (req, res) => {
 /*
  This route updates a given post.
 */
-router.put('/dashboard/edit/:id', async (req, res) => {
+router.put('/dashboard/edit/:id', async (req, res, next) => {
     try {
         
         const dbPostData = await UserPost.findByPk(req.params.id);
@@ -56,9 +56,8 @@ router.put('/dashboard/edit/:id', async (req, res) => {
                 { where: { id: req.params.id } }
             );
 
-            // res.redirect('/dashboard');
-            res.status(200).json(dbEditData);
-            // res.render('edit', { post, logged_in: req.session.logged_in});       
+            // Send redirect with 303 or PUT will not GET /dashboard after.
+            res.redirect(303, '/dashboard');
         }
 
     } catch (err) {
@@ -106,12 +105,12 @@ router.get('/board/:id', async (req, res) => {
 /* 
 TODO:
     - Add a post blog post route
-    - Add an update blog post route
-    - Add a delete blog post route
     (Validate update with logged in user session)
-
 */
 
+/* 
+ This route adds a comment onto a given thread.
+*/
 router.post('/board/:id', async (req, res) => {
     try {
         const userComment = await Comment.create(
