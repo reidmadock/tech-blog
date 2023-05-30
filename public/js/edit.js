@@ -14,8 +14,11 @@ document.querySelector('#update-post').addEventListener('submit', async (event) 
     });
 
     if (response.ok) {
-        document.location.href('/dashboard');
+        console.log(response);
+        if(response.redirected) {
+            window.location.replace(response.url);
+        }
     } else {
         alert('Error updating post');
     }
-})
+});

@@ -1,6 +1,6 @@
 const postTitle = document.querySelector('#title');
 const postContent = document.querySelector('#content');
-const allEditBtns = document.querySelectorAll('.edit-post');
+// const allEditBtns = document.querySelectorAll('.edit-post');
 const allDelBtns = document.querySelectorAll('.delete-post');
 
 document.querySelector('#create-post').addEventListener('submit', async (event) => {
@@ -23,7 +23,7 @@ document.querySelector('#create-post').addEventListener('submit', async (event) 
         alert('Something went wrong with this post')
     }
 })
-
+/*
 allEditBtns.forEach((btn) => {
     btn.addEventListener('click', async (event) => {
         event.preventDefault();
@@ -32,10 +32,14 @@ allEditBtns.forEach((btn) => {
         document.location.replace(`/dashboard/edit/${btn.value}`); 
     });
 });
-
+*/
 allDelBtns.forEach((btn) => {
     btn.addEventListener('click', async (event) => {
         event.preventDefault();
+
+        if(!confirm('Are you sure you would like to delete this post?')) {
+            return;
+        }
 
         const response = await fetch(`/api/data/delete/${btn.value}`, {
             method: "DELETE" });

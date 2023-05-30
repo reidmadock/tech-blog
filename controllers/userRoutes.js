@@ -11,10 +11,15 @@ router.get('/dashboard', async (req, res) => {
     }
 })
 
+/*
+ This route returns a given post to the edit screen.
+ Editing does not require bringing the comments with it.
+*/
 router.get('/dashboard/edit/:id', async (req, res) => {
     try {
         const dbPostData = await UserPost.findByPk(req.params.id);
         
+        // Validate this post is owned by the (session) user requesting it for edits
         if(dbPostData.user_id !== req.session.user.id) {
             res.status(400).json('Access denied');
         }
@@ -28,12 +33,16 @@ router.get('/dashboard/edit/:id', async (req, res) => {
         console.log(err);
         res.status(500).json(err);
     }
-})
-router.put('/dashboard/edit/:id', async (req, res) => {
+});
+/*
+ This route updates a given post.
+*/
+router.put('/dashboard/edit/:id', async (req, res, next) => {
     try {
         
         const dbPostData = await UserPost.findByPk(req.params.id);
         
+        // Validate this post is owned by the (session) user requesting it for edits
         if(dbPostData.user_id !== req.session.user.id) {
             res.status(400).json('Access denied');
         }
@@ -47,9 +56,8 @@ router.put('/dashboard/edit/:id', async (req, res) => {
                 { where: { id: req.params.id } }
             );
 
-            // res.redirect('/dashboard');
-            res.status(200).json(dbEditData);
-            // res.render('edit', { post, logged_in: req.session.logged_in});       
+            // Send redirect with 303 or PUT will not GET /dashboard after.
+            res.redirect(303, '/dashboard');
         }
 
     } catch (err) {
@@ -57,9 +65,11 @@ router.put('/dashboard/edit/:id', async (req, res) => {
         res.status(500).json(err);
     }
 })
-/* This query is tested and works,
+/* 
+ This query is tested and works,
  brings back the selected post, all
- post comments and all comment users */
+ post comments and all comment users 
+*/
 router.get('/board/:id', async (req, res) => {
     try {
         const dbPostData = await UserPost.findByPk(req.params.id, 
@@ -95,16 +105,14 @@ router.get('/board/:id', async (req, res) => {
 /* 
 TODO:
     - Add a post blog post route
-    - Add an update blog post route
-    - Add a delete blog post route
     (Validate update with logged in user session)
-
 */
 
+/* 
+ This route adds a comment onto a given thread.
+*/
 router.post('/board/:id', async (req, res) => {
     try {
-        // const userComment = {content: req.body.content,
-        // user_id:}
         const userComment = await Comment.create(
             {
                 content: req.body.content,
@@ -112,7 +120,7 @@ router.post('/board/:id', async (req, res) => {
                 user_post_id: parseInt(req.params.id)
             }
         );
-        // res.render('thread', { postThread, logged_in: req.session.logged_in, });
+        
         res.status(200).redirect(`/board/${req.params.id}`);
     } catch (err) {
         console.log(err);
