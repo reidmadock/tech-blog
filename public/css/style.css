@@ -1,0 +1,31 @@
+body {
+    background-color: grey;
+}
+
+.card {
+    margin: 10px;
+    padding: 10px;
+}
+
+.card a {
+    text-decoration: none;
+}
+
+.blog {
+    color: black;
+}
+
+.comments {
+    border-left: 2px solid rgb(0,0,0);
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.content-header {
+    background-color: azure;
+}
+
+.content-header * {
+    display: inline;
+    white-space: nowrap;
+}

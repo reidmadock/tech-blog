@@ -1,0 +1,22 @@
+[
+    {
+        "title": "This is seed data",
+        "content": "That means I don't really care what goes in it",
+        "user_id": 1
+    },
+    {
+        "title": "This is also seed data",
+        "content": "That means I still don't really care what goes in it",
+        "user_id": 1
+    },
+    {
+        "title": "WHY SO MANY SEEDS",
+        "content": "Why the seeds part 2 seed boogaloo",
+        "user_id": 1
+    },
+    {
+        "title": "Last but not SEED",
+        "content": "Pun doesn't really work",
+        "user_id": 1
+    }
+]

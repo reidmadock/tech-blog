@@ -1,0 +1,37 @@
+<section class="card">
+  <!-- The contents of this card links to the board page using the UserPost ID -->
+  <div class="blog post">
+    <!-- Top of the page, post gets SLIGHTLY different style with the h2 -->
+    <header class="content-header">  
+      <h2>{{postThread.title}}</h2>
+      <p>{{postThread.user.username}}</p>
+      <p>{{postThread.createdAt}}</p>
+    </header>
+    
+    <p>{{postThread.content}}</p>
+  </div>
+
+  <!-- Comments follow after with h3s instead of h2s -->
+  <div class="comments">
+  {{#each postThread.comments as |comment|}}
+  <div class="blog comment">
+    <header class="content-header">  
+      <h3>{{comment.user.username}}</h3>
+      <p>{{comment.createdAt}}</p>
+    </header>
+    <p>{{comment.content}}</p>
+  </div>
+  {{/each}}    
+  </div>
+  {{!-- TODO: Add 'leave comment' form and submission area --}}
+  <div class="add-comment">
+  {{#if logged_in}}
+    <form action="" method="post">
+      <input type="text" id="content" name="content" value="Comment..."><br><br>
+      <input type="submit" value="Submit">
+    </form>
+  {{else}}
+  <h3>You must be logged in to leave a comment</h3>
+  {{/if}}
+  </div>
+</section>

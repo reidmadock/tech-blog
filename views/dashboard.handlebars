@@ -1,0 +1,35 @@
+<div>
+    <h2>My posts:</h2>
+    {{#each allPosts as |blogpost|}}
+    <section class="card">
+        <!-- The contents of this card links to the board page using the UserPost ID -->
+        <a href="board/{{id}}">
+            <!-- The card contains the post name and submission date as the card header -->
+            <header>
+                <h2>
+                    {{title}}   
+                </h2>
+                {{createdAt}}
+            </header>
+            <p>{{content}}</p>
+        </a>
+    </section>
+    <div class="post-options">
+        <button class="edit-post" value="{{blogpost.id}}" form>Edit</button>
+        <button class="delete-post" value="{{blogpost.id}}">Delete</button>
+    </div>
+    {{/each}}
+    <h2>Add post:</h2>
+    
+    <div>
+        <form id="create-post" autocomplete="off">
+            <label for="title">Title</label><br>
+            <input type="text" id="title" name="title" value="Title..."><br><br>
+            <label for="content">Content</label><br>
+            <input type="text" id="content" name="content" value="Content..."><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+
+<script src="./js/dashboard.js"></script>
