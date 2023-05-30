@@ -29,6 +29,34 @@ router.get('/dashboard/edit/:id', async (req, res) => {
         res.status(500).json(err);
     }
 })
+router.put('/dashboard/edit/:id', async (req, res) => {
+    try {
+        
+        const dbPostData = await UserPost.findByPk(req.params.id);
+        
+        if(dbPostData.user_id !== req.session.user.id) {
+            res.status(400).json('Access denied');
+        }
+
+        if(dbPostData.user_id === req.session.user.id) {    
+            const dbEditData = await UserPost.update(
+                {
+                    title: req.body.title,
+                    content: req.body.content
+                },
+                { where: { id: req.params.id } }
+            );
+
+            // res.redirect('/dashboard');
+            res.status(200).json(dbEditData);
+            // res.render('edit', { post, logged_in: req.session.logged_in});       
+        }
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+})
 /* This query is tested and works,
  brings back the selected post, all
  post comments and all comment users */

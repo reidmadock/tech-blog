@@ -28,7 +28,8 @@ allEditBtns.forEach((btn) => {
     btn.addEventListener('click', async (event) => {
         event.preventDefault();
         
-        document.location.href = `/dashboard/edit/${btn.value}`;
+        // document.location.href = `/dashboard/edit/${btn.value}`;
+        document.location.replace(`/dashboard/edit/${btn.value}`); 
     });
 });
 

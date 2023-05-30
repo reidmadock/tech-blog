@@ -109,6 +109,34 @@ router.post('/submit', async (req, res) => {
 
 // Update user post route
 // router.put();
+
+router.put('/edit/:id', async (req, res) => {
+    try {
+        
+        const dbPostData = await UserPost.findByPk(req.params.id);
+        
+        if(dbPostData.user_id !== req.session.user.id) {
+            res.status(400).json('Access denied');
+        }
+
+        if(dbPostData.user_id === req.session.user.id) {    
+            const dbEditData = await UserPost.update(
+                {
+                    title: req.body.title,
+                    content: req.body.content
+                },
+                { where: req.params.id }
+            );
+
+            res.redirect('/dashboard');
+            // res.render('edit', { post, logged_in: req.session.logged_in});       
+        }
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+})
 /*
  Backend route to delete a post.
  This route is tested and works
