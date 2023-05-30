@@ -2,13 +2,24 @@ body {
     background-color: grey;
 }
 
+* {
+    resize: none;
+}
+
 .card {
     margin: 10px;
     padding: 10px;
+    border: 2px solid #000000;
+    border-radius: 4px;
+    max-width: 600px;
 }
 
 .card a {
     text-decoration: none;
+}
+
+.card button {
+    position: absolute;
 }
 
 .blog {

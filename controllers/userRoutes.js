@@ -11,10 +11,15 @@ router.get('/dashboard', async (req, res) => {
     }
 })
 
+/*
+ This route returns a given post to the edit screen.
+ Editing does not require bringing the comments with it.
+*/
 router.get('/dashboard/edit/:id', async (req, res) => {
     try {
         const dbPostData = await UserPost.findByPk(req.params.id);
         
+        // Validate this post is owned by the (session) user requesting it for edits
         if(dbPostData.user_id !== req.session.user.id) {
             res.status(400).json('Access denied');
         }
@@ -28,12 +33,16 @@ router.get('/dashboard/edit/:id', async (req, res) => {
         console.log(err);
         res.status(500).json(err);
     }
-})
+});
+/*
+ This route updates a given post.
+*/
 router.put('/dashboard/edit/:id', async (req, res) => {
     try {
         
         const dbPostData = await UserPost.findByPk(req.params.id);
         
+        // Validate this post is owned by the (session) user requesting it for edits
         if(dbPostData.user_id !== req.session.user.id) {
             res.status(400).json('Access denied');
         }
@@ -57,9 +66,11 @@ router.put('/dashboard/edit/:id', async (req, res) => {
         res.status(500).json(err);
     }
 })
-/* This query is tested and works,
+/* 
+ This query is tested and works,
  brings back the selected post, all
- post comments and all comment users */
+ post comments and all comment users 
+*/
 router.get('/board/:id', async (req, res) => {
     try {
         const dbPostData = await UserPost.findByPk(req.params.id, 
@@ -103,8 +114,6 @@ TODO:
 
 router.post('/board/:id', async (req, res) => {
     try {
-        // const userComment = {content: req.body.content,
-        // user_id:}
         const userComment = await Comment.create(
             {
                 content: req.body.content,
@@ -112,7 +121,7 @@ router.post('/board/:id', async (req, res) => {
                 user_post_id: parseInt(req.params.id)
             }
         );
-        // res.render('thread', { postThread, logged_in: req.session.logged_in, });
+        
         res.status(200).redirect(`/board/${req.params.id}`);
     } catch (err) {
         console.log(err);

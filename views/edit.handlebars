@@ -6,11 +6,14 @@
         <header class="content-header">  
         <h2>{{post.title}}</h2>
         <p>{{post.user.username}}</p>
-        <p>{{post.createdAt}}</p>
+        {{!-- <p>{{post.createdAt}}</p> --}}
         </header>
         
         <p>{{post.content}}</p>
     </div>
+</section>
+
+<section class="card">
     <h2>New:</h2>
     <form id="update-post">
         <textarea type="text" id="edit-title" name="title" rows="1" cols="50">{{post.title}}</textarea><br><br>
