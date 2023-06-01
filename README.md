@@ -1,6 +1,8 @@
 # tech-blog
 
  ## Table of Contents
+ - [Issues](#issues)
+ - [Description](#description)
  - [Installation](#installation)
  - [Usage](#usage)
  - [Screenshot](#screenshot)
@@ -20,7 +22,7 @@ The API routes aren't layed out as well as I might have liked, some functionalit
  Run this from the command line with "npm start"
 
  ## Link
- The app is live on heroku ![A link to it can be found here]()
+ The app is live on heroku [a link to it can be found here](https://enigmatic-forest-11190.herokuapp.com/)
  
  ## Screenshot
  Here is a screenshot of the application running. <br /> ![Screenshot](./public/assets/blogscreenshot.png)
