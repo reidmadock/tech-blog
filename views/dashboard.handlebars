@@ -1,35 +1,48 @@
-<div>
-    <h2>My posts:</h2>
-    {{#each allPosts as |blogpost|}}
-    <section class="card">
-        <!-- The contents of this card links to the board page using the UserPost ID -->
-        <a href="dashboard/edit/{{id}}">
-            <!-- The card contains the post name and submission date as the card header -->
-            <header class="content-header">
-                <h2>
-                    {{title}}   
-                </h2>
-                {{createdAt}}
-            </header>
-            <p>{{content}}</p>
-        </a>
-    </section>
-    <div class="post-options">
-        {{!-- <button class="edit-post" value="{{blogpost.id}}" form>Edit</button> --}}
-        <button class="btn delete-post" value="{{blogpost.id}}">Delete</button>
-    </div>
+<div class="container">
+    <div class="my-posts">
+        <h2>My posts:</h2>
+        {{#each allPosts as |blogpost|}}
+        <section class="card">
+            <!-- The contents of this card links to the board page using the UserPost ID -->
+            <a href="dashboard/edit/{{id}}">
+                <!-- The card contains the post name and submission date as the card header -->
+                <div class="content-header">
+                    <h2>
+                        {{title}}   
+                    </h2>
+                    <p class="date">
+                        {{createdAt}}
+                        {{!-- {{log 'createdAt' createdAt}} --}}
+                    </p>
+                </div>
+                <div class="content-body">
+                    <p>
+                        {{content}}
+                    </p>
+                </div>
+            </a>
+            <button class="btn delete-post delete-btn" value="{{blogpost.id}}">Delete</button>
+        </section>
+
+        {{!-- <div class="post-options"> --}}
+            {{!-- <button class="edit-post" value="{{blogpost.id}}" form>Edit</button> --}}
+        {{!-- </div> --}}
     {{/each}}
-    <h2>Add post:</h2>
+    </div>
+    <div class="add-post">
+        <h2>Add post:</h2>
+        
+        <section class="card">
+            <form id="create-post" autocomplete="off">
+                <label for="title">Title</label><br>
+                <textarea type="text" id="title" name="title" value="Title..." rows="1" cols="50"></textarea><br><br>
+                <label for="content">Content</label><br>
+                <textarea type="text" id="content" name="content" value="Content..." rows="4" cols="50"></textarea><br><br>
+                <input type="submit" value="Submit" class="btn">
+            </form>
+        </section>
     
-    <section class="card">
-        <form id="create-post" autocomplete="off">
-            <label for="title">Title</label><br>
-            <textarea type="text" id="title" name="title" value="Title..." rows="1" cols="50"></textarea><br><br>
-            <label for="content">Content</label><br>
-            <textarea type="text" id="content" name="content" value="Content..." rows="4" cols="50"></textarea><br><br>
-            <input type="submit" value="Submit">
-        </form>
-    </section>
+    </div>
 </div>
 
 <script src="./js/dashboard.js"></script>

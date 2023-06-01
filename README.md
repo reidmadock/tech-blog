@@ -20,10 +20,10 @@ The API routes aren't layed out as well as I might have liked, some functionalit
  Run this from the command line with "npm start"
 
  ## Link
- This app is not live.
+ The app is live on heroku ![A link to it can be found here]()
  
  ## Screenshot
- Here is a screenshot of the application running. <br /> ![Screenshot]()
+ Here is a screenshot of the application running. <br /> ![Screenshot](./public/assets/blogscreenshot.png)
  
  ## Contact me
  Here is my [GitHub Profile](https://github.com/reidmadock) <br />

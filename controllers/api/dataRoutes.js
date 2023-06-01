@@ -57,23 +57,39 @@ router.get('/board/:id', async (req, res) => {
         res.status(500).json(err);
     }
 });
+router.get('/metadata', async (req, res) => { 
+    try {
+        const dbCommData = await Comment.getAttributes();
+        const dbUserData = await User.getAttributes();
+        const dbPostData = await UserPost.getAttributes();
 
+        res.status(200).json({dbCommData, dbUserData, dbPostData});
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
+/*
+ Get all comments for testing purposes
+*/
+router.get('/usercomments', async (req, res) => {
+        try {
+            const dbPostData = await Comment.findAll();
+
+            const allComments = dbPostData.map((post) => post.get({plain: true}));
+
+            res.status(200).json(allComments);            
+        } catch (err) {
+            console.log(err);
+            res.status(500).json(err);
+        }
+})
 /*
  This is a route for testing,
  This method is alternative to creating an association on User
  */
 router.get('/userposts', async (req, res) => {
         try {
-            // const dbPostData = await User.findByPk(req.session.user.id, {
-            //     include: [
-            //         {
-            //             model: UserPost,
-            //             where: {
-            //                 user_id: req.session.user.id,
-            //             }
-            //         } 
-            //     ]
-            // });
             const dbPostData = await UserPost.findAll({
                 where: {
                     user_id: req.session.user.id,
@@ -81,8 +97,6 @@ router.get('/userposts', async (req, res) => {
             });
 
             const allPosts = dbPostData.map((post) => post.get({plain: true}));
-            // const allPosts = dbPostData.get({plain: true});
-            // const allPosts = (await dbPostData).map.get({plain: true});
 
             res.status(200).json(allPosts);            
         } catch (err) {

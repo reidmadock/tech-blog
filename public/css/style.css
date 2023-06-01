@@ -1,10 +1,9 @@
 :root {
     --content-area-size: 650px;
+    --comment-area-size: 500px;
 
-    --primary-red: hsl(0,100%,67%);
-    --primary-orange: hsl(39, 100%, 56%);
-    --primary-green: hsl(166, 100%, 37%);
     --primary-cobalt: hsl(234, 85%, 45%);
+    --primary-red: hsl(0,100%,67%);
 
     --gradient-slate: hsl(252, 100%, 67%);
     --gradient-royal: hsl(241, 81%, 54%);
@@ -15,6 +14,8 @@
     --neutral-paleblue: hsl(221, 100%, 96%);
     --neutral-lavender: hsl(241, 100%, 89%);
     --neutral-darkgrayblue: hsl(224, 30%, 27%);
+
+    --accent-grayblue: hsla(224, 30%, 50%, 1);
 }
 
 * {
@@ -26,10 +27,8 @@ body {
     height: 100vh;
     margin: 0;
     background-color: var(--neutral-darkgrayblue);
-    /* background-color: #71797E; */
-    /* font-family: 'Courier New', Courier, monospace; */
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: var(--neutral-lavender);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 a {
@@ -38,44 +37,81 @@ a {
 }
 
 header {
-    background-color: grey;
-    padding-bottom: 1rem;
-}
-
-nav a {
-    font-size: 3rem;
+    background-color: var(--accent-grayblue);
     padding: 1rem;
 }
 
-.card {
-    margin: 10px;
-    /* padding: 10px; */
-    border: 2px solid #000000;
+nav {
+    font-size: 3rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.my-posts {
+    min-width: var(--content-area-size);
+}
+
+.add-post {
+    min-width: var(--content-area-size);
+}
+
+.btn {
+    background-color: var(--accent-grayblue); /* gray blue */
     border-radius: 4px;
-    max-width: var(--content-area-size);
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.delete-post {
+    background-color: var(--primary-red);
+    max-width: 80px;
+    align-self: flex-end;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    border: 2px solid var(--accent-grayblue);
+    border-radius: 4px;
+    width: var(--content-area-size);
+}
+
+.card form {
+    padding: 8px;
 }
 
 .card a {
     text-decoration: none;
 }
-
-.card button {
-    position: absolute;
+.card a * {
+    padding: 8px;
 }
 
 .blog {
-    color: black;
+    /* color: black; */
 }
 
 .comments {
-    border-left: 2px solid rgb(0,0,0);
+    border-left: 2px solid var(--accent-grayblue);
     margin-left: 10px;
     padding: 10px;
 }
 
 .comment {
-    max-width: var(--content-area-size);
-    border-bottom: 1px dashed #000000;
+    /* max-width: var(--content-area-size); */
+    width: var(--comment-area-size);
+    border-bottom: 2px dashed var(--accent-grayblue);
     margin: 4px;
 }
 
@@ -85,7 +121,7 @@ nav a {
 }
 
 .content-header {
-    background-color: #71797E;
+    background-color: var(--accent-grayblue);
 }
 
 .content-header * {

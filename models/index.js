@@ -26,6 +26,6 @@ UserPost.hasMany(Comment, {
  Every Comment has one associated User */
 Comment.belongsTo(User, {
     foreignKey: "user_id"
-})
+});
 
 module.exports = { User, UserPost, Comment};
