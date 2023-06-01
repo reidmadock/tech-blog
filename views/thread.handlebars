@@ -1,38 +1,40 @@
-<section class="card">
-  <!-- The contents of this card links to the board page using the UserPost ID -->
-  <div class="blog post">
-    <!-- Top of the page, post gets SLIGHTLY different style with the h2 -->
-    <header class="content-header">  
-      <h2>{{postThread.title}}</h2>
-      <h3>Posted by: {{postThread.user.username}}</h3>
-      <p>{{postThread.createdAt}}</p>
-    </header>
-    
-    <p>{{postThread.content}}</p>
-  </div>
-</section>
+<div class="container">
+  <section class="card">
+    <!-- The contents of this card links to the board page using the UserPost ID -->
+    <div class="blog post">
+      <!-- Top of the page, post gets SLIGHTLY different style with the h2 -->
+      <header class="content-header">  
+        <h2>{{postThread.title}}</h2>
+        <h3>Posted by: {{postThread.user.username}}</h3>
+        <p class="date">{{postThread.createdAt}}</p>
+      </header>
+      
+      <p>{{postThread.content}}</p>
+    </div>
+  </section>
 
-<!-- Comments follow after with h3s instead of h2s -->
-<div class="comments">
-  {{#each postThread.comments as |comment|}}
-  <div class="blog comment">
-    <header class="content-header">  
-      <h3>{{comment.user.username}}</h3>
-      <p>{{comment.createdAt}}</p>
-    </header>
-    <p>{{comment.content}}</p>
+  <!-- Comments follow after with h3s instead of h2s -->
+  <div class="comments">
+    {{#each postThread.comments as |comment|}}
+    <div class="blog comment">
+      <header class="content-header">  
+        <h3>{{comment.user.username}}</h3>
+        <p>{{comment.createdAt}}</p>
+      </header>
+      <p>{{comment.content}}</p>
+    </div>
+    {{/each}}    
   </div>
-  {{/each}}    
-</div>
 
-<div class="add-comment">
-  <h3>Leave a comment on this post:</h3>
-  {{#if logged_in}}
-    <form action="" method="post" autocomplete="off">
-      <textarea type="text" id="content" name="content" rows="3" cols="40" value="Comment..."></textarea><br><br>
-      <input class="btn" type="submit" value="Submit">
-    </form>
-  {{else}}
-  <h3>You must be logged in to leave a comment</h3>
-  {{/if}}
+  <div class="add-comment">
+    <h3>Leave a comment on this post:</h3>
+    {{#if logged_in}}
+      <form action="" method="post" autocomplete="off">
+        <textarea type="text" id="content" name="content" rows="3" cols="40" value="Comment..."></textarea><br><br>
+        <input class="btn" type="submit" value="Submit">
+      </form>
+    {{else}}
+    <h3>You must be logged in to leave a comment</h3>
+    {{/if}}
+  </div>
 </div>

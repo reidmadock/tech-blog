@@ -1,13 +1,21 @@
 <section class="card">
   <!-- The contents of this card links to the board page using the UserPost ID -->
   <a href="board/{{id}}">
-    <!-- The card contains the post name and submission date as the card header -->
-    <header class="content-header">
+    <!-- The card contains the post name and submission date as the card div -->
+    <div class="content-header">
       <h2>
         {{title}}
       </h2>
-      {{createdAt}}
-      </header>
-    <p>{{content}}</p>
+      <p class="date">
+        {{createdAt}}
+      </p>
+    </div>
+
+    <div class="content-body">
+      <p>
+        {{content}}
+      </p>
+    </div>
+  
   </a>
 </section>
